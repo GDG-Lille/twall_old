@@ -1,27 +1,37 @@
-# Twall
+# Front / Twall - [Devfest](https://devfest.gdglille.org/) // GDG Lille ([@GDGLille](https://twitter.com/GDGLille)) 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+[![Build Status](http://jenkins.bodul.fr/buildStatus/icon?job=GDG-Lille/twall/master)](http://jenkins.bodul.fr/job/GDG-Lille/job/twall/job/master/)
 
-## Development server
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=twall)](https://sonarcloud.io/dashboard/index/twall)
+[![Lines of Codes](https://sonarcloud.io/api/badges/measure?key=twall&metric=ncloc&blinking=true)](https://sonarcloud.io/dashboard/index/twall)
+[![Blocker Violations](https://sonarcloud.io/api/badges/measure?key=twall&metric=blocker_violations&blinking=true)](https://sonarcloud.io/dashboard/index/twall)
+[![Critical Violations](https://sonarcloud.io/api/badges/measure?key=twall&metric=critical_violations&blinking=true)](https://sonarcloud.io/dashboard/index/twall)
+[![Bugs](https://sonarcloud.io/api/badges/measure?key=twall&metric=bugs&blinking=true)](https://sonarcloud.io/dashboard/index/twall)
+[![Code Smells](https://sonarcloud.io/api/badges/measure?key=twall&metric=code_smells&blinking=true)](https://sonarcloud.io/dashboard/index/twall)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Made with ...
+* [NPM](https://www.npmjs.com/) 
+* [Angular](https://angular.io/) with [Angular CLI](https://cli.angular.io/)
+* [MomentJS](https://momentjs.com/)
+* [Firebase](https://firebase.google.com/)
 
-## Code scaffolding
+## How to build for production ?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Nothing to do, [Jenkins](https://jenkins.io/) does it :) (@see Jenkinsfile)
 
-## Build
+## How to run in local ?
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Running unit tests
+## How to display tweets ?
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Simple, there is only one page : http://your-uri.org/tweets
 
-## Running end-to-end tests
+### Option
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| Name     | Description                              | Default              | Example                                  |
+| -------- | ---------------------------------------- | -------------------- | ---------------------------------------- |
+| refresh  | The refresh frequency (in milliseconds)  | 5000, cannot be less | http://your-uri.org/tweets;refresh=10000 |
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Contact via [Issues](https://github.com/GDG-Lille/twall-front/issues)
+Helpful for **question**, **bug** and **contribution request**.
