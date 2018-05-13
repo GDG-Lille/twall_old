@@ -39,10 +39,10 @@ pipeline {
                 def target = '--configuration=staging'
 
                 if(env.BRANCH_NAME == 'master') {
-                  target = '--prod'
+                  target = '--configuration=production'
                 }
 
-                sh 'npm run build -- ${target}'
+                sh "npm run build -- ${target}"
               }
             }
         }
