@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "./node_modules/firebase-tools/bin/firebase deploy --debug",
+    "deploy": "./node_modules/firebase-tools/bin/firebase deploy --token $FIREBASE_TOKEN --debug",
     "e2e": "ng e2e"
   },
   "private": true,
