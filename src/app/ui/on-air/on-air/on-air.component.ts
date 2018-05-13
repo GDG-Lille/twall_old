@@ -16,10 +16,7 @@ export class OnAirComponent implements OnInit {
   ngOnInit() {
     this.offlineService
       .getStatus()
-      .subscribe(isOffline => {
-        console.log(isOffline);
-        this.isOffline = isOffline;
-      });
+      .subscribe(isOffline => this.isOffline = isOffline);
   }
 
 }
