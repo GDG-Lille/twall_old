@@ -43,6 +43,7 @@ pipeline {
                 }
 
                 sh 'npm run build -- ${target}'
+              }
             }
         }
         stage('Deploy') {
