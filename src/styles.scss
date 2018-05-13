@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$twall-primary: mat-palette($mat-grey);
+$twall-secondary: mat-palette($mat-light-blue);
+
+$twall-theme: mat-light-theme($twall-primary, $twall-secondary);
+
+@include angular-material-theme($twall-theme);
+
+body {
+  margin: 0;
+}

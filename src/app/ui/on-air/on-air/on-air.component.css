@@ -1,0 +1,25 @@
+@keyframes live {
+  50% {
+    border-radius: 50%;
+    box-shadow: 0 0 5px #F44336;
+  }
+}
+
+.on-air {
+  display: flex;
+  align-items: center;
+}
+
+.on-air .icon {
+  padding: 0 14px;
+}
+
+.on-air .red-dot {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0 14px;
+  border-radius: 2px;
+  background-color: #F44336;
+  animation: live 1s infinite;
+}

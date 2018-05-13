@@ -1,0 +1,9 @@
+{
+  "/functions": {
+    "target": "http://localhost:5000/twall-dev/us-central1",
+    "pathRewrite": {
+      "^/functions": ""
+    },
+    "changeOrigin": true
+  }
+}

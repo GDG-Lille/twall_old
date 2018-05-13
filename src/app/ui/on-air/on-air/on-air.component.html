@@ -1,0 +1,9 @@
+<div class="on-air">
+  <div *ngIf="isOffline; then offlineBlock; else onlineBlock;"></div>
+  <ng-template #onlineBlock>
+    <div class="red-dot"></div>
+  </ng-template>
+  <ng-template #offlineBlock>
+    <mat-icon class="icon">cloud_off</mat-icon>
+  </ng-template>
+</div>

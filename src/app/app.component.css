@@ -1,0 +1,16 @@
+.app-name {
+  display: flex;
+  align-items: center;
+}
+
+.app-name .first {
+  color: #0E6993;
+}
+
+.app-name .second {
+  color: #C52127;
+}
+
+.app-name .third {
+  color: #F7981D;
+}

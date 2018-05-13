@@ -1,0 +1,5 @@
+<div class="tweets-list">
+  <div class="cell" *ngFor="let tweet of tweets" @easeIn>
+    <app-tweet-card [tweet]="tweet"></app-tweet-card>
+  </div>
+</div>

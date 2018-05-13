@@ -1,0 +1,85 @@
+import {animate, style, transition, trigger} from '@angular/animations';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
+import {OfflineService} from '../../../core/offline/offline.service';
+import {Tweet} from '../../shared/domains/tweet';
+import {TweetsService} from '../../shared/services/tweets.service';
+
+@Component({
+  selector: 'app-tweets',
+  templateUrl: './tweets.component.html',
+  styleUrls: ['./tweets.component.css'],
+  animations: [
+    trigger('easeIn', [
+      transition(
+        ':enter',
+        [
+          style({opacity: 0}),
+          animate('500ms ease-in', style({opacity: 1}))
+        ])
+    ])
+  ]
+})
+export class TweetsComponent implements OnInit, OnDestroy {
+
+  public tweets: Array<Tweet>;
+  private interval: number;
+  private isOffline = false;
+
+  constructor(private tweetsService: TweetsService,
+              private offlineService: OfflineService,
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar) {
+  }
+
+  ngOnInit(): void {
+    this.offlineService
+      .getStatus()
+      .subscribe(isOffline => this.isOffline = isOffline);
+
+    this.route.paramMap
+      .subscribe(params => {
+        this.getTweets();
+
+        let refreshFrequency = +params.get('refresh');
+        refreshFrequency = refreshFrequency && refreshFrequency > 5000 ? refreshFrequency : 5000;
+        this.interval = window.setInterval(() => this.getTweets(), refreshFrequency);
+      });
+  }
+
+  ngOnDestroy(): void {
+    window.clearInterval(this.interval);
+  }
+
+  /**
+   * Retrieve a list of {@link Tweet} for the hashtag DevfestLille from Api.
+   * @private
+   */
+  private getTweets(): void {
+    if (!this.isOffline) {
+      this.tweetsService
+        .getTweetsForHashtag('#Climax', 20)
+        .subscribe(
+          tweets => this.tweets = tweets,
+          err => this.handleErr()
+        );
+    }
+  }
+
+  /**
+   * Manage errors from Api.
+   * @private
+   */
+  private handleErr(): void {
+    this.snackBar.open(
+      'Erreur lors de la récupération des tweets',
+      null,
+      {
+        duration: 3000,
+        horizontalPosition: 'start',
+        verticalPosition: 'bottom'
+      });
+  }
+
+}
