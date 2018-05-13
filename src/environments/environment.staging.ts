@@ -5,6 +5,10 @@ export const environment = {
     authDomain: 'twall-dev.firebaseapp.com',
     projectId: 'twall-dev'
   },
+  default: {
+    hashtag: '#Climax',
+    count: 20
+  },
   functions: {
     uri: 'https://us-central1-twall-dev.cloudfunctions.net'
   }
