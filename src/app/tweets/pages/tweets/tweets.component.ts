@@ -2,6 +2,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 import {OfflineService} from '../../../core/offline/offline.service';
 import {Tweet} from '../../shared/domains/tweet';
 import {TweetsService} from '../../shared/services/tweets.service';
@@ -59,7 +60,7 @@ export class TweetsComponent implements OnInit, OnDestroy {
   private getTweets(): void {
     if (!this.isOffline) {
       this.tweetsService
-        .getTweetsForHashtag('#Climax', 20)
+        .getTweetsForHashtag(environment.default.hashtag, environment.default.count)
         .subscribe(
           tweets => this.tweets = tweets,
           err => this.handleErr()

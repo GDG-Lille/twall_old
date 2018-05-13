@@ -10,6 +10,6 @@ export const environment = {
     count: 20
   },
   functions: {
-    uri: '/functions'
+    uri: 'https://us-central1-twall-dev.cloudfunctions.net'
   }
 };
