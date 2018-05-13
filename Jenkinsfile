@@ -36,7 +36,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                def target = ''
+                def target = '--configuration=staging'
 
                 if(env.BRANCH_NAME == 'master') {
                   target = '--prod'
