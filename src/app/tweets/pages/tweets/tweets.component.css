@@ -1,12 +1,17 @@
 .tweets-list {
-  padding: 8px;
+  margin: 8px;
   column-count: 4;
-  background-color: whitesmoke;
   min-height: 100%;
 }
 
 .tweets-list .cell {
   display: inline-block;
+}
+
+.tweets-list .metrics {
+  position: fixed;
+  z-index: 1;
+  bottom: -10px;
 }
 
 .tweets-list .spinner {

@@ -24,8 +24,8 @@ import {TweetsService} from '../../shared/services/tweets.service';
 })
 export class TweetsComponent implements OnInit, OnDestroy {
 
-  public isLoading = false;
   public tweets: Array<Tweet>;
+  public isLoading = false;
   private interval: number;
   private isOffline = false;
 
