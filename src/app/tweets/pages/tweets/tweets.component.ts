@@ -24,6 +24,7 @@ import {TweetsService} from '../../shared/services/tweets.service';
 })
 export class TweetsComponent implements OnInit, OnDestroy {
 
+  public isLoading = false;
   public tweets: Array<Tweet>;
   private interval: number;
   private isOffline = false;
@@ -41,6 +42,7 @@ export class TweetsComponent implements OnInit, OnDestroy {
 
     this.route.paramMap
       .subscribe(params => {
+        this.isLoading = true;
         this.getTweets();
 
         let refreshFrequency = +params.get('refresh');
@@ -62,7 +64,10 @@ export class TweetsComponent implements OnInit, OnDestroy {
       this.tweetsService
         .getTweetsForHashtag(environment.default.hashtag, environment.default.count)
         .subscribe(
-          tweets => this.tweets = tweets,
+          tweets => {
+            this.tweets = tweets;
+            this.isLoading = false;
+          },
           err => this.handleErr()
         );
     }

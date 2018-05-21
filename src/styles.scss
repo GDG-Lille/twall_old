@@ -3,11 +3,16 @@
 @include mat-core();
 
 $twall-primary: mat-palette($mat-grey);
-$twall-secondary: mat-palette($mat-light-blue);
+$twall-secondary: mat-palette($mat-blue);
 
 $twall-theme: mat-light-theme($twall-primary, $twall-secondary);
 
 @include angular-material-theme($twall-theme);
+
+html,
+body {
+  height: 100%;
+}
 
 body {
   margin: 0;

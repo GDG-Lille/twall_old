@@ -1,5 +1,14 @@
 <div class="tweets-list">
-  <div class="cell" *ngFor="let tweet of tweets" @easeIn>
-    <app-tweet-card [tweet]="tweet"></app-tweet-card>
-  </div>
+
+  <div *ngIf="isLoading; then loadingBlock else tweetsBlock"></div>
+
+  <ng-template #loadingBlock>
+    <mat-spinner class="spinner"></mat-spinner>
+  </ng-template>
+
+  <ng-template #tweetsBlock>
+    <div class="cell" *ngFor="let tweet of tweets" @easeIn>
+      <app-tweet-card [tweet]="tweet"></app-tweet-card>
+    </div>
+  </ng-template>
 </div>
