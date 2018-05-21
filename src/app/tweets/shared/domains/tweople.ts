@@ -6,7 +6,7 @@ export class Tweople {
   constructor(public id_str?: string,
               public name?: string,
               public screen_name?: string,
-              public profile_image_url?: string) {
+              public profile_image_url_https?: string) {
   }
 
 }
