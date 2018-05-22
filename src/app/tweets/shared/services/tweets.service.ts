@@ -2,6 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
+import {Metric} from '../domains/metric';
 import {Tweet} from '../domains/tweet';
 
 @Injectable({
@@ -27,6 +28,22 @@ export class TweetsService {
 
     return this.httpClient.get<Array<Tweet>>(
       `${TweetsService.URI_FUNCTIONS}/getTweetsForHashtag`,
+      {
+        params: httpQueryParam
+      });
+  }
+
+  /**
+   * Retrieve a list of {@link Metric} for the given hashtag.
+   * @param {string} hashtag
+   * @return {Observable<Array<Tweet>>}
+   */
+  public getTodaysMetricsForHashtag(hashtag: string): Observable<Array<Metric>> {
+    let httpQueryParam = new HttpParams();
+    httpQueryParam = httpQueryParam.append('hashtag', hashtag);
+
+    return this.httpClient.get<Array<Metric>>(
+      `${TweetsService.URI_FUNCTIONS}/getTodaysMetricsForHashtag`,
       {
         params: httpQueryParam
       });

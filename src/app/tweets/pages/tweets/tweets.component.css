@@ -1,11 +1,16 @@
 .tweets-list {
   margin: 8px;
-  column-count: 4;
+  display: flex;
+  flex-direction: row;
   min-height: 100%;
 }
 
-.tweets-list .cell {
-  display: inline-block;
+.tweets-list .column {
+  width: calc(100% / 4);
+}
+
+.tweets-list .column + .column {
+  margin-left: 8px;
 }
 
 .tweets-list .metrics {
