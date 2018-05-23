@@ -5,8 +5,8 @@ import {Serie} from './serie';
  */
 export class Metric {
 
-    constructor(public name?: string,
-                public series?: Array<Serie>) {
-    }
+  constructor(public name?: string,
+              public series?: Array<Serie>) {
+  }
 
 }

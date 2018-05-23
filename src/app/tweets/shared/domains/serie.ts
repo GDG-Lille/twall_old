@@ -3,8 +3,8 @@
  */
 export class Serie {
 
-    constructor(public value?: number,
-                public name?: number | string) {
-    }
+  constructor(public value?: number,
+              public name?: number | string) {
+  }
 
 }
