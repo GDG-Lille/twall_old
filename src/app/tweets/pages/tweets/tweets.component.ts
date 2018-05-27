@@ -84,7 +84,7 @@ export class TweetsComponent implements OnInit, OnDestroy {
   private getTweets(): void {
     if (!this.isOffline) {
       this.tweetsService
-        .getTweetsForHashtag(environment.default.hashtag, environment.default.count)
+        .getTodaysTweetsForHashtag(environment.default.hashtag)
         .subscribe(
           tweets => {
             this.columns = [];

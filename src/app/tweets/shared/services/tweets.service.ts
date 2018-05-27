@@ -21,13 +21,13 @@ export class TweetsService {
    * @param {number} count
    * @return {Observable<Array<Tweet>>}
    */
-  public getTweetsForHashtag(hashtag: string, count: number = 50): Observable<Array<Tweet>> {
+  public getTodaysTweetsForHashtag(hashtag: string, count: number = 50): Observable<Array<Tweet>> {
     let httpQueryParam = new HttpParams();
     httpQueryParam = httpQueryParam.append('hashtag', hashtag);
     httpQueryParam = httpQueryParam.append('count', count.toString());
 
     return this.httpClient.get<Array<Tweet>>(
-      `${TweetsService.URI_FUNCTIONS}/getTweetsForHashtag`,
+      `${TweetsService.URI_FUNCTIONS}/getTodaysTweetsForHashtag`,
       {
         params: httpQueryParam
       });
