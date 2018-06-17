@@ -4,6 +4,7 @@ import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {OfflineService} from '../../../core/offline/offline.service';
+import {Metric} from '../../shared/domains/metric';
 import {Tweet} from '../../shared/domains/tweet';
 import {TweetsService} from '../../shared/services/tweets.service';
 
@@ -24,7 +25,9 @@ import {TweetsService} from '../../shared/services/tweets.service';
 })
 export class TweetsComponent implements OnInit, OnDestroy {
 
-  public tweets: Array<Tweet>;
+  public columns: Array<Array<Tweet>>;
+  public metrics: Array<Metric>;
+  public isLoading = false;
   private interval: number;
   private isOffline = false;
 
@@ -41,6 +44,7 @@ export class TweetsComponent implements OnInit, OnDestroy {
 
     this.route.paramMap
       .subscribe(params => {
+        this.isLoading = true;
         this.getTweets();
 
         let refreshFrequency = +params.get('refresh');
@@ -54,18 +58,61 @@ export class TweetsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Define the {@link Tweet} property on which we track.
+   * @param idx
+   * @param tweet
+   * @returns {string}
+   */
+  public trackByTweet(idx, tweet) {
+    return tweet.id_str;
+  }
+
+  /**
+   * Define the idx column on which we track.
+   * @param idx
+   * @param column
+   * @returns {number}
+   */
+  public trackByColumn(idx, column) {
+    return idx;
+  }
+
+  /**
    * Retrieve a list of {@link Tweet} for the hashtag DevfestLille from Api.
    * @private
    */
   private getTweets(): void {
     if (!this.isOffline) {
       this.tweetsService
-        .getTweetsForHashtag(environment.default.hashtag, environment.default.count)
+        .getTodaysTweetsForHashtag(environment.default.hashtag)
         .subscribe(
-          tweets => this.tweets = tweets,
+          tweets => {
+            this.columns = [];
+            tweets.forEach((tweet, idx) => {
+              if (this.columns[idx % 4] === undefined) {
+                this.columns[idx % 4] = [];
+              }
+              this.columns[idx % 4].push(tweet);
+            });
+            this.getMetrics();
+            this.isLoading = false;
+          },
           err => this.handleErr()
         );
     }
+  }
+
+  /**
+   * Retrieve a list of {@link Metric} for the hashtag DevfestLille.
+   * @private
+   */
+  private getMetrics(): void {
+    this.tweetsService
+      .getTodaysMetricsForHashtag(environment.default.hashtag)
+      .subscribe(
+        metrics => this.metrics = metrics,
+        err => this.handleErr()
+      );
   }
 
   /**

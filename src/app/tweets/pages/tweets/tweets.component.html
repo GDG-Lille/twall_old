@@ -1,5 +1,27 @@
-<div class="tweets-list">
-  <div class="cell" *ngFor="let tweet of tweets" @easeIn>
-    <app-tweet-card [tweet]="tweet"></app-tweet-card>
-  </div>
+<div #tweetsList class="tweets-list">
+
+  <div *ngIf="isLoading; then loadingBlock else tweetsBlock"></div>
+
+  <ng-template #loadingBlock>
+    <mat-spinner class="spinner"></mat-spinner>
+  </ng-template>
+
+  <ng-template #tweetsBlock>
+    <app-tweet-metrics
+      class="metrics"
+      [width]="tweetsList.clientWidth"
+      [height]="150"
+      [metrics]="metrics">
+    </app-tweet-metrics>
+
+    <div
+      *ngFor="let tweets of columns; trackBy: trackByColumn"
+      class="column">
+      <app-tweet-card
+        *ngFor="let tweet of tweets; trackBy: trackByTweet"
+        [tweet]="tweet"
+        @easeIn>
+      </app-tweet-card>
+    </div>
+  </ng-template>
 </div>

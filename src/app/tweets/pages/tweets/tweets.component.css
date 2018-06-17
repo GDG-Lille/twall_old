@@ -1,9 +1,26 @@
 .tweets-list {
-  padding: 8px;
-  column-count: 4;
-  background-color: whitesmoke;
+  margin: 8px;
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
 }
 
-.tweets-list .cell {
-  display: inline-block;
+.tweets-list .column {
+  width: calc(100% / 4);
+}
+
+.tweets-list .column + .column {
+  margin-left: 8px;
+}
+
+.tweets-list .metrics {
+  position: fixed;
+  z-index: 1;
+  bottom: -10px;
+}
+
+.tweets-list .spinner {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
 }

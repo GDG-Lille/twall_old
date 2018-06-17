@@ -6,8 +6,7 @@ export const environment = {
     projectId: 'twall-dev'
   },
   default: {
-    hashtag: '#Climax',
-    count: 20
+    hashtag: '#Climax'
   },
   functions: {
     uri: 'https://us-central1-twall-dev.cloudfunctions.net'

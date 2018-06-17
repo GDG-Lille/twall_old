@@ -6,8 +6,7 @@ export const environment = {
     projectId: 'twall-9be4d'
   },
   default: {
-    hashtag: '#DevfestLille',
-    count: 20
+    hashtag: '#DevfestLille'
   },
   functions: {
     uri: 'https://us-central1-twall-9be4d.cloudfunctions.net'
