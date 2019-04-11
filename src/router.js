@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import InterConf from './views/inter-conf/InterConf';
+import Talks from './views/talks/Talks';
+import Tweets from './views/tweets/Tweets';
 
 Vue.use(Router);
 
@@ -9,17 +11,30 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: '/inter-conf',
+      component: InterConf,
+      children: [
+        {
+          path: '',
+          name: 'inter-conf',
+          components: {
+            talks: Talks,
+            tweets: Tweets,
+          },
+        },
+      ],
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      path: '/talks',
+      component: Talks,
+    },
+    {
+      path: '/tweets',
+      component: Tweets,
+    },
+    {
+      path: '**',
+      redirect: { name: 'inter-conf' },
     },
   ],
 });
