@@ -16,8 +16,8 @@
 
     <div class="container"
          v-else>
-      <talk :id="`hour_${talk.hour.replace(':', '')}`"
-            :is-active="activeHourId === `hour_${talk.hour.replace(':', '')}`"
+      <talk :id="talk.hourId"
+            :is-active="activeHourId === talk.hourId"
             :key="`talk_${talkId}`"
             :talk="talk"
             v-for="(talk, talkId) in talks">
@@ -54,13 +54,20 @@ export default {
   },
   methods: {
     getTalks() {
-      const roomId = this.$route.query.roomId || 'room-1';
+      const editionId = this.$route.query.editionId;
+      const roomId = this.$route.query.roomId;
       this.isLoading = true;
       this.isInError = false;
 
-      TalksService.findAll(roomId)
-        .then(talks => this.talks = talks)
-        .catch(() => this.isInError = true)
+      TalksService.findAllForEdition(editionId, roomId)
+        .then(talks => {
+          this.talks = talks;
+          Object.values(this.talks).forEach(talk => talk.hourId = `hour_${moment(talk.hour).format('HHmm')}`);
+        })
+        .catch(err => {
+          console.error(err);
+          this.isInError = true;
+        })
         .finally(() => this.isLoading = false);
     },
     setActiveTalks() {
@@ -78,7 +85,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .talks {
   height: 100%;
 

@@ -9,6 +9,8 @@
         <div>{{ $t('APP_LIVE.IS_ONLINE') }}</div>
       </div>
       <div>
+        <span>{{ now | date('HH:mm') }}</span>
+        &nbsp;
         <slot></slot>
       </div>
     </md-snackbar>
@@ -31,6 +33,8 @@ export default {
     return {
       isOnline: true,
       isOffline: false,
+      now: new Date(),
+      timeout: null,
     };
   },
   created() {
@@ -43,6 +47,11 @@ export default {
       this.isOffline = true;
       this.isOnline = false;
     };
+
+    this.timeout = window.setInterval(() => this.now = new Date(), 1000);
+  },
+  destroyed() {
+    window.clearInterval(this.timeout);
   },
 };
 </script>
