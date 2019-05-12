@@ -4,12 +4,12 @@
                  v-if="isLoading">
     </app-loading>
 
-    <app-message :action="getTalks"
+    <app-message :action="findTalks"
                  :message="$t('TALKS.IS_IN_ERROR')"
                  v-else-if="isInError">
     </app-message>
 
-    <app-message :action="getTalks"
+    <app-message :action="findTalks"
                  :message="$t('TALKS.IS_EMPTY')"
                  v-else-if="Object.keys(talks).length === 0">
     </app-message>
@@ -46,14 +46,14 @@ export default {
     };
   },
   created() {
-    this.getTalks();
+    this.findTalks();
     this.setActiveTalks();
   },
   destroyed() {
     window.clearTimeout(this.timeout);
   },
   methods: {
-    getTalks() {
+    findTalks() {
       const editionId = this.$route.query.editionId;
       const roomId = this.$route.query.roomId;
       this.isLoading = true;

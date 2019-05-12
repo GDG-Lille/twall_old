@@ -6,11 +6,9 @@
                  md-position="left">
       <div>
         <div class="dot"></div>
-        <div>{{ $t('APP_LIVE.IS_ONLINE') }}</div>
+        <div>{{ now | date('HH:mm') }}</div>
       </div>
       <div>
-        <span>{{ now | date('HH:mm') }}</span>
-        &nbsp;
         <slot></slot>
       </div>
     </md-snackbar>
@@ -60,7 +58,6 @@ export default {
 @keyframes live {
   50% {
     border-radius: 50%;
-    box-shadow: 0 0 5px white;
   }
 }
 

@@ -9,3 +9,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+if (process.env.NODE_ENV === 'local') {
+  firebase.functions().useFunctionsEmulator('http://localhost:5000');
+}
